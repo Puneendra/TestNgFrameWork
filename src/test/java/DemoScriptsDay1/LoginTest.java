@@ -41,4 +41,21 @@ public class LoginTest
     {
         System.out.println(" ValidLoginTest");
     }
+    @DataProvider(name ="Login")
+    public Object[][] LoginDataProvider()
+    {
+        Object [][] data ={
+                {"puni","123"},
+                {"puni1","814"},
+                {"puni2","733723"},
+
+        };
+        return data;
+    }
+
+    @Test(dataProvider ="Login")
+    public void LoginData(String UserName, String Password)
+    {
+        System.out.println(UserName + " : " + Password);
+    }
 }
