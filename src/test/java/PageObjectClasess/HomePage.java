@@ -1,45 +1,42 @@
 package PageObjectClasess;
 
+import basePage.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class HomePage
+public class HomePage extends BasePage
 {
     WebDriver driver;
 
-    //constructor
 
-    public HomePage(WebDriver driver)
-    {
-        this.driver = driver;
-        PageFactory.initElements(driver,this);
-    }
+        public HomePage(WebDriver driver)
+        {
+            super(driver);
 
-    //Locators
-
-    @FindBy(xpath = "//span[text() ='My Account']")
-    private WebElement  myAccountTab;
-
-    @FindBy(xpath ="//a[text()='Register']")
-    private WebElement  registerLink;
+        }
 
 
+        @FindBy(xpath = "//span[text() ='My Account']")
+        private WebElement myAccountTab;
 
-public void ClickOnRegister()
-{
-    myAccountTab.click();
+        @FindBy(xpath = "//a[text()='Register']")
+        private WebElement registerLink;
 
-}
 
-public void ClickOnRegisterLink()
-{
-    registerLink.click();
-}
+        public void ClickOnRegister ()
+        {
+            myAccountTab.click();
+
+        }
+
+        public void ClickOnRegisterLink ()
+        {
+            registerLink.click();
+        }
+
 
 
 }
-
-
 
