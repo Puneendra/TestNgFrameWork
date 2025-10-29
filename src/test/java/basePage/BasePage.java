@@ -1,10 +1,7 @@
 package basePage;
 
 import org.openqa.selenium.WebDriver;
-<<<<<<< HEAD
-=======
 import org.openqa.selenium.support.PageFactory;
->>>>>>> master
 
 public class BasePage
 {
@@ -12,11 +9,7 @@ public class BasePage
 
     public BasePage(WebDriver driver)
     {
-        this.driver=driver;
-<<<<<<< HEAD
-=======
+        this.driver = driver;
         PageFactory.initElements(driver, this);
->>>>>>> master
     }
-
 }
