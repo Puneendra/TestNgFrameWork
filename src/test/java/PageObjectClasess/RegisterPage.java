@@ -1,7 +1,10 @@
 package PageObjectClasess;
 
 import basePage.BasePage;
+<<<<<<< HEAD
+=======
 import org.openqa.selenium.Keys;
+>>>>>>> master
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,7 +16,10 @@ public class RegisterPage extends BasePage
 public RegisterPage(WebDriver driver)
 {
     super(driver);
+<<<<<<< HEAD
+=======
 
+>>>>>>> master
 }
 
 //constructor
@@ -21,6 +27,27 @@ public RegisterPage(WebDriver driver)
 
 //locators
 @FindBy(xpath = "//input[@name='firstname']")
+<<<<<<< HEAD
+private WebElement firstName;
+
+@FindBy(xpath = "//input[@name='lastname']")
+private WebElement lastName;
+
+@FindBy(xpath = "//input[@name='email']")
+private WebElement email;
+
+@FindBy(xpath = "//input[@name='telephone']")
+private WebElement telephone;
+
+@FindBy(xpath = "//input[@name='password']")
+private WebElement password;
+
+@FindBy(xpath = "//input[@name='confirm']")
+private WebElement confirmPassword;
+
+@FindBy(xpath = "//input[@value='Continue']")
+private WebElement continueButton;
+=======
 private WebElement firstNameInput;
 
 @FindBy(xpath = "//input[@name='lastname']")
@@ -79,6 +106,7 @@ public void clickRegisterButton()
 {
     continueButtonInput.click();
 }
+>>>>>>> master
 
 
 
