@@ -1,0 +1,20 @@
+2025-11-02 08:25:13 DEBUG RegistrationScripts:19 - do the Fillregistration
+2025-11-02 08:25:15 DEBUG RegistrationScripts:25 - Click on my register
+2025-11-02 08:25:16 DEBUG RegistrationScripts:28 - clicked on my registerlink 
+2025-11-02 08:25:17 DEBUG RegistrationScripts:40 - Entered all mandatory fields
+2025-11-02 08:25:31 DEBUG RegistrationScripts:19 - do the Fillregistration
+2025-11-02 08:25:31 DEBUG RegistrationScripts:25 - Click on my register
+2025-11-02 08:25:32 DEBUG RegistrationScripts:28 - clicked on my registerlink 
+2025-11-02 08:25:33 DEBUG RegistrationScripts:40 - Entered all mandatory fields
+2025-11-02 13:09:09 INFO  LoginScrpts:15 - starts Login Validation
+2025-11-02 13:09:10 INFO  LoginScrpts:21 - click oN MyAccount
+2025-11-02 13:10:19 INFO  LoginScrpts:15 - starts Login Validation
+2025-11-02 13:10:20 INFO  LoginScrpts:21 - click oN MyAccount
+2025-11-02 13:12:17 INFO  LoginScrpts:15 - starts Login Validation
+2025-11-02 13:12:18 INFO  LoginScrpts:21 - click oN MyAccount
+2025-11-02 13:43:30 INFO  LoginScrpts:15 - starts Login Validation
+2025-11-02 13:43:31 INFO  LoginScrpts:21 - click oN MyAccount
+2025-11-02 13:43:32 INFO  LoginScrpts:25 - click on Login button
+2025-11-02 13:45:31 INFO  LoginScrpts:15 - starts Login Validation
+2025-11-02 13:45:32 INFO  LoginScrpts:21 - click oN MyAccount
+2025-11-02 13:45:33 INFO  LoginScrpts:25 - click on Login button

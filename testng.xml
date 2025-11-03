@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
-    <groups>
-        <run>
-            <include name="smoke"/>
-        </run>
-    </groups>
-    <test verbose="2" preserve-order="true"
-          name="D:/Github Project/Testng/src/test/java/DemoScriptsDay1/LoginTest.java">
+    <test verbose="2" preserve-order="true" name="Regression">
+        <parameter name="browser" value="chrome"></parameter>
         <classes>
-            <class name="DemoScriptsDay1.LoginTest">
-
-
+            <class name="testScripts.LoginScrpts">
+                <methods>
+                    <include name="loginValidation"/>
+                </methods>
             </class>
         </classes>
     </test>
