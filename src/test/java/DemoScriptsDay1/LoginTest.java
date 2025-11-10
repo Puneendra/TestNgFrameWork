@@ -41,7 +41,7 @@ public class LoginTest
     {
         System.out.println(" ValidLoginTest");
     }
-    @DataProvider(name ="Login")
+    @DataProvider(name ="LoginScrpts")
     public Object[][] LoginDataProvider()
     {
         Object [][] data ={
