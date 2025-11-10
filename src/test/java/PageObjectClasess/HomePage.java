@@ -19,7 +19,6 @@ public class HomePage extends BasePage
 
     @FindBy(xpath = "//a[text()='Register']")
     private WebElement registerLink;
-
     @FindBy(xpath = "//a[text()='Login']")
     private WebElement LoginLink;
 
@@ -36,4 +35,6 @@ public class HomePage extends BasePage
     {
         LoginLink.click();
     }
+
+
 }
