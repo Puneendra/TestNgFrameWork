@@ -9,12 +9,16 @@ public class LandingPage extends BasePage
 {
     WebDriver driver;
 
-    public LandingPage(WebDriver driver) {
+    public LandingPage(WebDriver driver)
+    {
         super(driver);
     }
 
     @FindBy(xpath = "//h2[text()='My Account']")
     private WebElement myAccountTab;
+
+    @FindBy(xpath = "//a[text()='Logout' and @class='list-group-item']")
+    private WebElement logoutButton;
 
 
 //Methods
@@ -23,11 +27,19 @@ public class LandingPage extends BasePage
     {
         try {
             return myAccountTab.isDisplayed();
-        }
-        catch (Exception e )
+        } catch (Exception e)
         {
             return false;
         }
+
+    }
+        public void  clickOnLogoutButton()
+        {
+            logoutButton.click();
+        }
+
+
+
     }
 
 
@@ -38,4 +50,5 @@ public class LandingPage extends BasePage
 
 
 
-}
+
+
