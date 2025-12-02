@@ -3,6 +3,8 @@ package basetest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -12,15 +14,18 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 import java.util.Properties;
 
 public class BaseTest
 {
-    public WebDriver driver;
+    public static WebDriver driver;
 
     //for logger
     public Logger logger;
@@ -29,7 +34,6 @@ public class BaseTest
     public Properties prop = new  Properties();
 
     @BeforeClass
-
     @Parameters({"browser"})//for tentng perameters
     public void setUp(String browser) throws IOException
     {
@@ -68,6 +72,24 @@ public class BaseTest
         driver.quit();
 
     }
+
+    public static String takeScreenShot(String tname)
+    {
+String timestamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+
+        TakesScreenshot screenshotaobj = (TakesScreenshot) driver;
+
+       File sourcefile =  screenshotaobj.getScreenshotAs(OutputType.FILE);
+
+       String folderPath =System.getProperty("user.dir")+".\\ScreenShots\\"+tname+timestamp+".png";
+        File targetfile = new File(folderPath);
+        sourcefile.renameTo(targetfile);
+        return folderPath;
+
+
+
+    }
+
 
 
 

@@ -46,14 +46,14 @@ public class LoginDataDrivenTest extends BaseTest
             logger.info("Login Failed");
         }
 
-        boolean expectedflag = true;
-        if (expectedCase == "Valid") {
-            logger.info("Login Successfull");
-
-        } else {
-            logger.info("Login Failed");
-
-        }
+//        boolean expectedflag = true;
+//        if (expectedCase == "Valid") {
+//            logger.info("Login Successfull");
+//
+//        } else {
+//            logger.info("Login Failed");
+//
+//        }
 
 
     }

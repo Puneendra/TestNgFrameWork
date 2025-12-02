@@ -1,95 +1,75 @@
 package Utilities;
 
-import java.awt.Desktop;
-import java.io.File;
-import java.io.IOException;
-//import java.net.URL;
-import java.net.URL;
-
-//Extent report 5.x...//version
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-
-import baseTest.BaseTest;
-
-import org.testng.ITestContext;
-import org.testng.ITestListener;
-import org.testng.ITestResult;
-
+import basetest.BaseTest;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
+import org.testng.ITestContext;
+import org.testng.ITestListener;
+import org.testng.ITestResult;
 
-import baseTest.BaseTest;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ExtentReportManager implements ITestListener {
 
-	public ExtentSparkReporter sparkReporter;
-	public ExtentReports extent;
-	public ExtentTest test;
+    public ExtentSparkReporter spark;
+    public ExtentReports extent;
+    public ExtentTest test;
 
+    @Override
+    public void onStart(ITestContext context) {
 
-	public void onStart(ITestContext testContext){
+        String timestamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+        spark = new ExtentSparkReporter("./reports/Report_" + timestamp + ".html");
+        spark.config().setDocumentTitle("Automation Report");
+        spark.config().setReportName("Execution Report");
+        spark.config().setTheme(Theme.STANDARD);
 
-		String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
-		sparkReporter = new ExtentSparkReporter(".\\reports\\+ "+ "Execution Report_"+timeStamp+".html");
-		sparkReporter.config().setDocumentTitle("Automation Execution Report");
-		sparkReporter.config().setReportName("Regression Testing");
-		sparkReporter.config().setTheme(Theme.STANDARD);
+        extent = new ExtentReports();
+        extent.attachReporter(spark);
 
-		extent = new ExtentReports();
-		extent.attachReporter(sparkReporter);
-		extent.setSystemInfo("Application Name","Amazon");
-		extent.setSystemInfo("Functionality","Search");
-		extent.setSystemInfo("Username",System.getProperty("user.name"));
-		extent.setSystemInfo("Environment","Test");
+        extent.setSystemInfo("Application", "Amazon.com");
+        extent.setSystemInfo("Environment", "Test");
+        extent.setSystemInfo("Browser", context.getCurrentXmlTest().getParameter("browser"));
+    }
 
-		extent.setSystemInfo("Browser",testContext.getCurrentXmlTest().getParameter("browser"));
-		extent.setSystemInfo("Groups",testContext.getCurrentXmlTest().getIncludedGroups().toString());
+    @Override
+    public void onTestSuccess(ITestResult result)
+    {
+        test = extent.createTest(result.getMethod().getMethodName());
+        test.assignCategory(result.getMethod().getMethodName());
 
-	}
+        test.log(Status.PASS, result.getMethod().getMethodName() + " passed");
+    }
 
-	public void onTestSuccess(ITestResult result){
+    @Override
+    public void onTestFailure(ITestResult result)
+    {
+        test = extent.createTest(result.getMethod().getMethodName());
+        test.assignCategory(result.getMethod().getMethodName());
+        test.log(Status.FAIL, result.getThrowable());
 
-		test = extent.createTest(result.getTestClass().getName());
-		test.assignCategory(result.getMethod().getGroups());
-		test.log(Status.PASS, result.getMethod().getMethodName() + " executed successfully");
+        String path = BaseTest.takeScreenShot(result.getMethod().getMethodName());
 
-	}
-	public void onTestFailure(ITestResult result){
-		test = extent.createTest(result.getTestClass().getName());
-		test.assignCategory(result.getMethod().getGroups());
-		test.log(Status.FAIL, result.getTestName() + " execution is failed");
+            test.addScreenCaptureFromPath(path);
 
+    }
 
-        try {
-			String imagePath = new BaseTest().captureScreen(result.getName());
-			test.addScreenCaptureFromPath(imagePath);
-        } catch (IOException e) {
-			e.printStackTrace();
-        }
+    @Override
+    public void onTestSkipped(ITestResult result)
+    {
+        test = extent.createTest(result.getMethod().getMethodName());
+        test.assignCategory(result.getMethod().getMethodName());
+        test.log(Status.SKIP, result.getMethod().getMethodName() + " skipped");
+        test.log(Status.INFO, result.getThrowable());
+    }
 
-
-	}
-
-	public void onTestSkipped(ITestResult result){
-		test = extent.createTest(result.getTestClass().getName());
-		test.assignCategory(result.getMethod().getGroups());
-		test.log(Status.SKIP, result.getTestName() + " got  skipped");
-		test.log(Status.INFO, result.getThrowable().getMessage());
-	}
-
-
-	public void onFinish(ITestContext testContext){
-      extent.flush();
-	}
-
-
-
-
-
+    @Override
+    public void onFinish(ITestContext context)
+    {
+        extent.flush();
+    }
 }

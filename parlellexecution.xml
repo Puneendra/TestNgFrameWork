@@ -1,24 +1,30 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite" thread-count="4" parallel="tests">
-    <test verbose="2" preserve-order="true" name="chrome-Regression">
-        <parameter name="browser" value="chrome"></parameter>
+<suite name="All Test Suite" parallel="tests" thread-count="3">
+
+    <listeners>
+        <listener class-name="Utilities.ExtentReportManager"/>
+    </listeners>
+
+    <test name="chrome1">
+
+        <parameter name="browser" value="chrome"/>
+
         <classes>
-            <class name="testScripts.RegistrationScripts">
-                <methods>
-                    <include name="Fillregistration"/>
-                </methods>
-            </class>
+            <class name="testScripts.LoginDataDrivenTest"/>
         </classes>
     </test>
-    <test verbose="2" preserve-order="true" name="firefox-Regression">
-        <parameter name="browser" value="firefox"></parameter>
+
+    <test name="chrome2">
+        <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="testScripts.RegistrationScripts">
-                <methods>
-                    <include name="Fillregistration"/>
-                </methods>
-            </class>
+            <class name="testScripts.LoginScrpts"/>
         </classes>
     </test>
+
+    <test name="chrome3">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="testScripts.LoginScrpts"/>
+        </classes>
+    </test>
+
 </suite>
